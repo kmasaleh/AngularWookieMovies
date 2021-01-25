@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { promise } from 'protractor';
+import { Movie } from './classes/movie';
+import { MoviesDataService } from './services/movies-data.service';
 
 @Component({
   selector: 'app-root',
@@ -8,3 +11,5 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'AngularWookieMovies';
 }
+
+

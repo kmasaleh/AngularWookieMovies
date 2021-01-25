@@ -1,0 +1,19 @@
+<mat-card class="Movie-card mat-elevation-z8">
+  <mat-card-content>
+    <a href="#" [routerLink]="['/MovieDetail',{movie:movie}]"   routerLinkActive="active">
+        <img mat-card-image [src]="movie.posterUrl" alt="Movie Poster">
+    </a>
+    <p>{{movie.slug}}</p>
+  </mat-card-content>
+  
+  <!--
+      
+
+  <mat-card-actions>
+    <button mat-button>LIKE</button>
+    <button mat-button>SHARE</button>
+  </mat-card-actions>
+  -->
+</mat-card>
+
+

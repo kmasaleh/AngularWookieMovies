@@ -1,0 +1,13 @@
+<div class='main-container'>
+
+<div class='img'>
+<img [src]="movie.backdropUrl" alt="Movie Poster">
+</div>
+
+<p class='title'> <span style="margin-right: 20px;">{{movie.title}}</span> <span>({{movie.rating}})</span></p>
+<p class='info'><span> {{movie.date}} </span> |  <span>{{movie.length}}</span> | <span>{{movie.director}}</span></p>
+<p class='cast'><span> Cast: {{movie.castActors}} </span> </p>
+<p class='overview'>
+    {{movie.overview}}
+</p>
+</div>
