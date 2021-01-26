@@ -27,7 +27,7 @@ export class MoviesStoreService  {
        });
  
 
-    },3000);
+    },10);
  
    }
    

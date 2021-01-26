@@ -1,8 +1,27 @@
 
 
 
+<ng-container *ngFor="let category of categories|keyvalue">
+  <ng-container >
+    <mat-grid-list cols="4"  gutterSize="5px"  >
+      
+          <div class="category"><p>{{category.key}}</p></div>
+          <!--mat-grid-tile-header > 
+        </mat-grid-tile-header-->
+      <mat-grid-tile *ngFor="let movie of category.value">
+        <app-movie-card [movie]=movie ></app-movie-card>
+      </mat-grid-tile>
+    </mat-grid-list>
 
-  <mat-grid-list cols="4"  gutterSize="5px"  *ngIf="movies!==null && movies.length!==0">
+  </ng-container>
+
+</ng-container>
+
+
+
+<!--
+
+<mat-grid-list cols="4"  gutterSize="5px"  *ngIf="movies!==null && movies.length!==0">
     
       <mat-grid-tile *ngFor="let movie of movies">
         <app-movie-card [movie]=movie ></app-movie-card>
@@ -11,22 +30,6 @@
     
   </mat-grid-list>
 
-
-  
-
-  <!--
-<div *ngIf="dataLoaded" class='container'>
-    <ng-container *ngFor="let movie of movies">
-      <app-movie-card [movie]=movie ></app-movie-card>
-    </ng-container>
-    
-</div>
-
-
-
-
-<app-movie-detail [movie]=movies[4] *ngIf="dataLoaded"></app-movie-detail>
 -->
-
-
+  
 

@@ -35,6 +35,10 @@ export class Movie{
         return movie;
     }
 
+    get RateOfFive (): number {
+        let r = Number(this.rating);
+        return r/2;
+    }
     get castActors() : string {
         return this.cast.join(', ');
     }
