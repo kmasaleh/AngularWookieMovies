@@ -16,6 +16,7 @@ import { MovieCardComponent } from './components/movie-card/movie-card.component
 import { MovieDetailComponent } from './components/movie-detail/movie-detail.component';
 import { MovieListComponent } from './components/movie-list/movie-list.component';
 import { FormsModule } from '@angular/forms';
+//import { BarRatingModule } from "ngx-bar-rating";
 
 @NgModule({
   declarations: [

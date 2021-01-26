@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 import { Movie } from '../classes/movie';
 import { MoviesDataService } from './movies-data.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class MoviesStoreService {
-
+export class MoviesStoreService  {
+  
   private subject = new BehaviorSubject<Movie[]> ([]) ;
   Movies$ : Observable<Movie[]> = this.subject.asObservable();
 
@@ -16,7 +16,19 @@ export class MoviesStoreService {
    }
 
    private loadAll(keywords:string=""){
-    this.movisDataService.getMovies().subscribe(movies=>this.subject.next(movies));
+
+    setTimeout(()=>{
+
+      let subscription :Subscription = 
+      this.movisDataService.getMovies(keywords)
+       .subscribe(movies=> { 
+         this.subject.next(movies);
+         subscription.unsubscribe();
+       });
+ 
+
+    },3000);
+ 
    }
    
    load = (keywords:string)=>{

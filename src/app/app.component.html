@@ -1,1 +1,22 @@
+
+<mat-toolbar color='primary'>
+    <a href="#" [routerLink]="['/home']"  style="color:white"><span>Wookie Movies</span></a>
+    <span class="span-spacer"></span>
+    <span>
+  
+    <input class='find-input' type="text" matInput  placeholder="Enter text to search .." 
+    [(ngModel)]="textToFind" (keyup)="onKeyup($event)">
+    <button mat-mini-fab  color="accent" aria-label="Search" (click)='onFind()'>
+    <mat-icon>search</mat-icon>
+    </button>
+    </span>
+  </mat-toolbar>
+
+<mat-progress-spinner color="accent" mode="indeterminate" *ngIf="loading" class='screen-center'></mat-progress-spinner >
 <router-outlet></router-outlet>
+
+<mat-toolbar color='accent' class='footer'>
+    <span>Wookie Movies By Khaled Saleh @2021</span>
+    <span class="span-spacer"></span>
+    <span>Contactless.io</span>
+  </mat-toolbar>

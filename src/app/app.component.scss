@@ -1,0 +1,26 @@
+.span-spacer {
+    flex: 1 1 auto;
+  }
+  .find-input{
+      height: 30px;
+      border-radius: 10px;
+      border-style: solid;
+      border-color: gray;
+      margin-right: 10px;
+  }
+  .screen-center{
+    margin: auto;
+    position: absolute;
+    top: 0; left: 0; bottom: 0; right: 0;
+    z-index: 1000;
+  }
+
+  .footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: red;
+    color: white;
+    text-align: center;
+  }

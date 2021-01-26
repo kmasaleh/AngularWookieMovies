@@ -4,12 +4,9 @@ import {Movie} from './../../app/classes/movie';
 import { map,catchError} from 'rxjs/operators';
 import { throwError } from 'rxjs';
 
-@Injectable(
-
-  {
+@Injectable({
   providedIn: 'root'
-}
-)
+})
 export class MoviesDataService {
 
   endPoint :string = 'https://wookie.codesubmit.io/movies?q=';

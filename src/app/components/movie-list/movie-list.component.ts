@@ -1,19 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MoviesDataService } from 'src/app/services/movies-data.service';
 import { Movie } from 'src/app/classes/movie';
 import { MoviesStoreService } from 'src/app/services/movies-store.service';
+import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-movie-list',
   templateUrl: './movie-list.component.html',
   styleUrls: ['./movie-list.component.scss']
   
 })
-export class MovieListComponent implements OnInit {
-loading:boolean = false;
+export class MovieListComponent implements OnInit,OnDestroy {
+
 movies : Movie[] ;
 dataLoaded :boolean =false;
+loading:boolean = false;
 categories : string[]=[];
-
+subscription :Subscription;
   constructor( 
     //private dataService :MoviesDataService
     private dataService :MoviesStoreService
@@ -23,14 +25,19 @@ categories : string[]=[];
   ngOnInit(){
     this.loading =true;
     this.dataLoaded = false;
-    this.dataService.Movies$.subscribe(data=>{
-      this.loading =false;
-      this.movies = data;  
-      this.loading = false;
-      this.dataLoaded = true;
-      this.ff();
+    this .subscription = this.dataService.Movies$.subscribe(data=>{
+      
+        this.loading =false;
+        this.movies = data;  
+        this.loading = false;
+        this.dataLoaded = true;
+        this.ff();
+      
     });
-    
+  }
+
+  ngOnDestroy(){
+    this.subscription.unsubscribe();
   }
 
 
@@ -46,24 +53,6 @@ categories : string[]=[];
     
     });
   }
-  textToFind:string;
-  onFind = ()=>{
-    this.loading =true;
-    this.dataLoaded = false;
-
-    //this.dataService.getMovies(this.textToFind).subscribe(data=>{
-      this.dataService.load(this.textToFind);
-  }
-
-  onKeyup = ($event)=>{
-    if ($event.keyCode === 13) {
-      // Cancel the default action, if needed
-      $event.preventDefault();
-      // Trigger the search
-      this.onFind();
-    }
-  }
-
 
 
 
