@@ -1,11 +1,50 @@
+<mat-toolbar color='primary'>
+  <span>Wookie Movies</span>
+  <span class="span-spacer"></span>
+  <span>
+
+        <input class='find-input' type="text" matInput  placeholder="Enter text to search .." 
+          [(ngModel)]="textToFind" (keyup)="onKeyup($event)">
+        <button mat-mini-fab  color="accent" aria-label="Search" (click)='onFind()'>
+          <mat-icon>search</mat-icon>
+        </button>
+  </span>
+</mat-toolbar>
 
 
-  <app-movie-detail [movie]=movies[4] *ngIf="dataLoaded"></app-movie-detail>
-<!--
+
+<mat-progress-spinner color="accent" mode="indeterminate" *ngIf="loading" class='screen-center'></mat-progress-spinner >
+
+  <mat-grid-list cols="4"  gutterSize="5px"  *ngIf="dataLoaded">
+    
+      <mat-grid-tile *ngFor="let movie of movies">
+        <app-movie-card [movie]=movie ></app-movie-card>
+      </mat-grid-tile>
+      
+    
+  </mat-grid-list>
+
+
+  <mat-toolbar color='accent'>
+    <span>Wookie Movies By Khaled Saleh @2021</span>
+    <span class="span-spacer"></span>
+    <span>Contactless.io</span>
+  </mat-toolbar>
+  
+
+  <!--
 <div *ngIf="dataLoaded" class='container'>
     <ng-container *ngFor="let movie of movies">
       <app-movie-card [movie]=movie ></app-movie-card>
     </ng-container>
     
 </div>
+
+
+
+
+<app-movie-detail [movie]=movies[4] *ngIf="dataLoaded"></app-movie-detail>
 -->
+
+
+

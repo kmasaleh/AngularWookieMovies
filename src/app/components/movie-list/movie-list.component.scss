@@ -4,8 +4,28 @@
     width : 1800px;
     flex-wrap: wrap;
 }
+
+.card-contaier{
+    display: inline-block;
+}
 app-movie-card{
     width: 350px;
     height: 350px;
     margin-top: 40px;
 }
+.span-spacer {
+    flex: 1 1 auto;
+  }
+  .find-input{
+      height: 30px;
+      border-radius: 10px;
+      border-style: solid;
+      border-color: gray;
+      margin-right: 10px;
+  }
+
+  .screen-center{
+    margin: auto;
+    position: absolute;
+    top: 0; left: 0; bottom: 0; right: 0;
+  }
