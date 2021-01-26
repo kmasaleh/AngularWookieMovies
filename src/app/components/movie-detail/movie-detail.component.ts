@@ -5,6 +5,11 @@ import { map } from 'rxjs/operators';
 import { Movie } from 'src/app/classes/movie';
 import { MoviesStoreService } from 'src/app/services/movies-store.service';
 
+/**
+ * @class
+ * @description A component that displays a detailed information about the movie 
+ * 
+ */
 @Component({
   selector: 'app-movie-detail',
   templateUrl: './movie-detail.component.html',
@@ -13,9 +18,15 @@ import { MoviesStoreService } from 'src/app/services/movies-store.service';
 export class MovieDetailComponent implements OnInit ,OnDestroy{
   subsciption :Subscription;
   movie:Movie = null;
-  constructor( private router: ActivatedRoute,private MoviesStore :MoviesStoreService) { }
+  constructor( private router: ActivatedRoute,private MoviesStore :MoviesStoreService) { 
 
-  
+  }
+
+  /**
+   * @member
+   * @description called when component is initialized, then we query the router parameers to 
+   * fetch the id of the movie and get the whole object from the data store to display its information
+   */
   ngOnInit(): void {
     this.router.queryParams.subscribe(params => {
       let id= this.router.snapshot.paramMap.get("id");

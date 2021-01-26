@@ -4,6 +4,12 @@ import {Movie} from './../../app/classes/movie';
 import { map,catchError} from 'rxjs/operators';
 import { throwError } from 'rxjs';
 
+
+/**
+ * @class
+ * @description Data service that communicates the back end REST API to fetch the movies data
+ */
+
 @Injectable({
   providedIn: 'root'
 })
@@ -14,6 +20,10 @@ export class MoviesDataService {
 
   }
 
+ /**
+   * @method getMovies
+   * @description issues an HTTP request by the appropriate headers to fetch the movies
+  */ 
   getMovies = (keywords:string="")=>{
     const httpOptions = {
       headers : new HttpHeaders({

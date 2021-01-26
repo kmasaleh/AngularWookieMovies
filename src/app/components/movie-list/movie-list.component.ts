@@ -3,6 +3,15 @@ import { MoviesDataService } from 'src/app/services/movies-data.service';
 import { Movie } from 'src/app/classes/movie';
 import { MoviesStoreService } from 'src/app/services/movies-store.service';
 import { Subscription } from 'rxjs';
+
+
+
+/**
+ * @class
+ * @description A component that displays all the retrieve movies into a lists
+ */
+
+
 @Component({
   selector: 'app-movie-list',
   templateUrl: './movie-list.component.html',
@@ -14,26 +23,28 @@ export class MovieListComponent implements OnInit,OnDestroy {
 movies : Movie[] ;
 dataLoaded :boolean =false;
 loading:boolean = false;
-categories0 : string[]=[];
+categories ;
 subscription :Subscription;
-  constructor( 
-    
-    private dataService :MoviesStoreService
-    )
-    {
+  
+  constructor( private dataService :MoviesStoreService){
   }
+  
+  
+  /**
+   * @member
+   * @description called when component is initialized, then we listen to the data store for any updates
+   * when the data reach the component,it cahces it locally then updates the UI. 
+  */ 
+
   ngOnInit(){
-    this.loading =true;
+    //this.loading =true;
     this.dataLoaded = false;
     this .subscription = this.dataService.Movies$.subscribe(data=>{
-      
-        this.loading =false;
-        this.movies = data;  
-        this.loading = false;
-        this.dataLoaded = true;
-        this.setupCategories();
-  //      this.ff();
-      
+    this.loading =false;
+    this.movies = data;  
+    //this.loading = false;
+    this.dataLoaded = true;
+    this.setupCategories();
     });
   }
 
@@ -41,7 +52,11 @@ subscription :Subscription;
     this.subscription.unsubscribe();
   }
 
-  categories ;
+/**
+ * @method
+ * @description Partion the movies into categoris by looping the whole array and examining the genre
+ * for each movie and store it inside the spesific category list
+*/
   setupCategories(){
     this.categories=null;
     
@@ -58,21 +73,5 @@ subscription :Subscription;
       });
     });
   }
-
-/*
-  ff = ()=>{
-    this.movies.forEach(element => {
-      this.categories0= [...this.categories,...element.genres];
-      for(var i=0; i<this.categories0.length; ++i) {
-        for(var j=i+1; j<this.categories0.length; ++j) {
-            if(this.categories[i] === this.categories[j])
-              this.categories0.splice(j--, 1);
-        }
-    }
-    
-    });
-  }
-*/
-
 
 }

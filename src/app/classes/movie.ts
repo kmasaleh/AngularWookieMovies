@@ -1,8 +1,18 @@
 import { formatDate } from "@angular/common";
-import { HttpClientJsonpModule } from "@angular/common/http";
-import { StringMap } from "@angular/compiler/src/compiler_facade_interface";
+
+
+/**
+ *@class
+ *@description to construct a strongly typed movie from json
+ * 
+ */
+
 
 export class Movie{
+    /**
+     * @field
+     * @description movie attributes
+     */
     backdropUrl :string;
     cast : string[];
     classification:string;
@@ -17,6 +27,11 @@ export class Movie{
     slug:string;
     title:string;
 
+    /**
+     * 
+     * @method maps json to class members
+     * @description construct a movie object from json response
+     */
     static asMovie(json:any):Movie{
         let movie :Movie = new Movie();
         movie.backdropUrl = json['backdrop'];
@@ -35,18 +50,37 @@ export class Movie{
         return movie;
     }
 
+    /**
+     * @property
+     * @description converts the rate of the movie from string to number and make it a rate of 5
+     */
     get RateOfFive (): number {
         let r = Number(this.rating);
         return r/2;
     }
-    get castActors() : string {
+    
+    /**
+     * @property
+     * @description flatten the actors array to a comma seperated string.
+     */
+     get castActors() : string {
         return this.cast.join(', ');
     }
+
+    /**
+     * @property
+     * @description convert the date from the string to date object.
+     */
     get  date():string {
         return formatDate(this.releasedDate,'yyyy-MM-dd',"en-us");
-        //return this.releasedDate.toLocaleString();
     }
-    static asMovies(json:[]) : Movie[]{
+ 
+    /**
+     * @method
+     * @param json contains the json response coming from the server
+     * @description converts the response to array of  strongly yped movies
+     */
+        static asMovies(json:[]) : Movie[]{
         return json.map(jsonEntity=> Movie.asMovie(jsonEntity));
     }
 }
